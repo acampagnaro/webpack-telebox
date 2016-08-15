@@ -18,7 +18,7 @@
 
         data(){
             return {
-                isVisible: true
+                isVisible: false
             }
         },
         methods:{
