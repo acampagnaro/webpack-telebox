@@ -4,33 +4,38 @@
 
     Vue.use(VueResource)
 
-        export default {
-            methods:{
-                sendMessage(events){
-                    events.preventDefault()                    
-                    this.contact.title = "Orçamento"
-                    Vue.http.post('http://localhost:5000/sendmail', this.contact).then((response) => {
+    export default {
+        methods:{
+            sendMessage(events){
+                events.preventDefault()
+                Vue.http.post('http://localhost:5000/sendmail', this.contact).then((response) => {
 
-                          // get status
-                          response.status;
+                  // get status
+                  response.status;
 
-                          // get status text
-                          response.statusText;
+                  // get status text
+                  response.statusText;
 
-                          // get all headers
-                          response.headers;
+                  // get all headers
+                  response.headers;
 
-                          // get 'Expires' header
-                          response.headers['Expires'];
+                  // get 'Expires' header
+                  response.headers['Expires'];
 
-                          // set data on vm
-                          this.$set('someData', response.json())
+                  // set data on vm
+                  this.$set('error', response.json())
 
-                      }, (error) => {
-                          window.console.log(error)
-                      });
-                }
+              }, (error) => {
+                  window.console.log(error)
+                  this.error = error.body;
+              });
             }
+        },
+        data(){
+            return {
+                error: ''
+            }
+        }
 }
 </script>
 
@@ -49,21 +54,28 @@
 
                 </section>
                 <section class="6u 12u(narrower)">
+                    <h3>{{error}}</h3>
                     <h3>Contato</h3>
                     <form>
                         <div class="row 50%">
+
+                            <input type="hidden" name="title" id="title"  v-model="contact.title"/>
+
                             <div class="6u 12u(mobilep)">
                                 <input type="text" name="name" id="name" placeholder="Nome" v-model="contact.name"/>
                             </div>
                             <div class="6u 12u(mobilep)">
                                 <input type="email" name="email" id="email" placeholder="E-mail" v-model="contact.email"/>
                             </div>
+
                         </div>
+
                         <div class="row 50%">
                             <div class="12u">
                                 <textarea name="message" id="message" placeholder="Mensagem" rows="5" v-model="contact.message"></textarea>
                             </div>
                         </div>
+
                         <div class="row 50%">
                             <div class="12u">
                                 <ul class="actions">
@@ -71,6 +83,7 @@
                                 </ul>
                             </div>
                         </div>
+
                     </form>
                 </section>
             </div>
