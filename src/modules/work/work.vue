@@ -1,3 +1,11 @@
+<script type="text/javascript">
+        export default {
+            ready () {
+                console.log('aaaaa');
+            }
+        }
+
+</script>
 <template>
         <section id="works" class="wrapper style2">
                     <div class="container">
