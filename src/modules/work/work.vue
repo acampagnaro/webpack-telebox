@@ -1,14 +1,24 @@
-<script type="text/javascript">
+<script>
+        import Vue from 'vue'
+        import VueResource from 'vue-resource'
+
+        Vue.use(VueResource)
+
         export default {
             ready () {
-                console.log('aaaaa');
+                Vue.http.get('http://localhost:5000/a').then(
+                    (data) => {
+                        console.log(data);
+                    }, 
+                    console.log()
+                 );
             }
         }
 
 </script>
 <template>
         <section id="works" class="wrapper style2">
-                    <div class="container">
+              <div class="container">
                     <ul>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
@@ -16,7 +26,7 @@
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                     </ul>
-            </div>
+              </div>
         </section>
 </template>
 
