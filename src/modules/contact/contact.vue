@@ -25,17 +25,18 @@
                   // set data on vm
                   //this.$set('error', response.json())
 
-                  this.isVisible = false;
+                  this.message = 'E-mail enviado com sucesso!';
+                  this.isVisible = true;
 
               }, (error) => {
-                  this.error = error.body;
+                  this.message = error.body;
                   this.isVisible = true;
               });
             }
         },
         data(){
             return {
-                error: '',
+                message: '',
                 isVisible: false
             }
         }
@@ -57,7 +58,7 @@
 
                 </section>
                 <section class="6u 12u(narrower)">
-                    <div :class="{ 'ac-modal-show': isVisible, 'ac-modal-hide': !isVisible}"><h3>{{error}}</h3></div>
+                    <div :class="{ 'ac-modal-show': isVisible, 'ac-modal-hide': !isVisible}"><h3>{{message}}</h3></div>
                     <h3>Contato</h3>
                     <form>
                         <div class="row 50%">

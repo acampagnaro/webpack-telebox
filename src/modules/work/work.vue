@@ -8,10 +8,14 @@
             ready () {
                 Vue.http.get('http://localhost:5000/a').then(
                     (data) => {
-                        console.log(data);
-                    }, 
-                    console.log()
+                        this.images = data.body
+                    }
                  );
+            },
+            data(){
+                return {
+                    images: '',
+                }
             }
         }
 
@@ -20,6 +24,7 @@
         <section id="works" class="wrapper style2">
               <div class="container">
                     <ul>
+                        <p>{{images}}</p>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>

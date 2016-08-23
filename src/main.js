@@ -29,6 +29,14 @@ const router = new VueRouter({
     history: true
 })
 
+router.redirect({
+
+	'/': '/home',
+
+	// redirect any not-found route to home
+	'*': '/home'
+})
+
 router.map(routes)
 
 router.start(App, '#app')
