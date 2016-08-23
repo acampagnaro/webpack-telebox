@@ -23,17 +23,20 @@
                   response.headers['Expires'];
 
                   // set data on vm
-                  this.$set('error', response.json())
+                  //this.$set('error', response.json())
+
+                  this.isVisible = false;
 
               }, (error) => {
-                  window.console.log(error)
                   this.error = error.body;
+                  this.isVisible = true;
               });
             }
         },
         data(){
             return {
-                error: ''
+                error: '',
+                isVisible: false
             }
         }
 }
@@ -54,7 +57,7 @@
 
                 </section>
                 <section class="6u 12u(narrower)">
-                    <h3>{{error}}</h3>
+                    <div :class="{ 'ac-modal-show': isVisible, 'ac-modal-hide': !isVisible}"><h3>{{error}}</h3></div>
                     <h3>Contato</h3>
                     <form>
                         <div class="row 50%">
@@ -108,3 +111,16 @@
     </div>        
     
 </template>
+
+<style scoped>
+    .ac-modal-show{
+        opacity: 1;
+        transition: opacity 400ms ease-in-out;
+        z-index: 10000;
+    }
+    .ac-modal-hide{
+        opacity: 0;
+        transition: opacity 400ms ease-in-out z-index 1s;
+        z-index: -10000;
+    }
+</style>
