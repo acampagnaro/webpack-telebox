@@ -1,36 +1,41 @@
 <script>
-        import Vue from 'vue'
-        import VueResource from 'vue-resource'
+    import Vue from 'vue'
+    import VueResource from 'vue-resource'
 
-        Vue.use(VueResource)
+    Vue.use(VueResource)
 
-        export default {
-            ready () {
-                Vue.http.get('http://localhost:5000/a').then(
-                    (data) => {
-                        this.images = data.body
-                    }
-                 );
-            },
-            data(){
-                return {
-                    images: '',
+    export default {
+        ready () {
+            Vue.http.get('http://localhost:5000/a').then(
+                (response) => {
+                    this.images = response.data;
+                }, (error) =>{
+                    console.log(error)
                 }
+             );
+        },
+        data(){
+            return {
+                images: '',
             }
         }
+    }
 
 </script>
 <template>
         <section id="works" class="wrapper style2">
               <div class="container">
                     <ul>
-                        <p>{{images}}</p>
-                        <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
-                        <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
-                        <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
-                        <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
+                        <li v-for="item in images">
+                            <img src="http://localhost:5000/{{item}}" alt="">
+                        </li>
+                    </ul>
+                    <!--
+                    <ul>
+                        <li><img src="http://localhost:5000/{{images}}" alt=""></li>
                         <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
                     </ul>
+                    -->
               </div>
         </section>
 </template>
@@ -48,5 +53,10 @@
                 padding-right: 20px;
                 vertical-align: middle;
                 width: 360px;
-        }        
+        }
+        #works li img{
+                width: 360px;
+                height: 247px;
+        }
+
     </style>
