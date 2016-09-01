@@ -1,9 +1,19 @@
-
 <script>
+
+    import Vue from 'vue'
+    import VueResource from 'vue-resource'
+    import VcModal from './modal.vue'
+    import VcFileUpload from './file-upload/main.vue'
     import Highcharts from 'highcharts'
+
+    Vue.use(VueResource)
+
     export default {
+        components: { VcModal, VcFileUpload },
         ready () {
-            // http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/area-basic/
+            this.fileModal.width = (window.innerWidth - 100)
+            this.fileModal.height = (window.innerHeight - 100)
+
             new Highcharts.Chart({
                 chart: {
                     renderTo: this.$els.chart,
@@ -73,13 +83,48 @@
                 }]
             });
         },
+        methods: {
+            openModal () {
+                this.$broadcast('open-modal', { modal: 'file-upload-modal'})
+            },
+        },
+        data () {
+            return {
+                fileModal: {
+                    width: 0,
+                    height: 0,
+                }
+            }
+        },
     }
+
 </script>
 
 <template>
     <div>
-        <h1>Beautiful and shinning Dashboard</h1>
-        <h4><em>Derrubar todas as árvore do Ibirapuera, porra!!!!</em></h4>
+        <vc-modal
+                title="File Upload"
+                :width="fileModal.width" :height="fileModal.height"
+                name="file-upload-modal">
+            <vc-file-upload></vc-file-upload>
+        </vc-modal>
+    </div>
+
+    <section class="wrapper style1">
+        <div class="container">
+            <div class="row 200%">
+                <section class="4u 12u(narrower)">
+                    <div class="box highlight">
+                        <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload" aria-hidden="true"></i></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <h1>Painel de Controle</h1>
+        <h4><em>Número de acessos</em></h4>
         <div v-el:chart class="ved-chart"></div>
     </div>
 </template>

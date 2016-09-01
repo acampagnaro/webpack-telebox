@@ -30,18 +30,18 @@
 
 <template>
     <section class="wrapper style1">
-            <div class="container">
-                <div class="row 200%">
-                    <section class="4u 12u(narrower)">
-                        <vc-modal
-                              title="File Upload"
-                              :width="fileModal.width" :height="fileModal.height"
-                              name="file-upload-modal">
-                              <vc-file-upload></vc-file-upload>
-                        </vc-modal>
-                        <a href="#" @click.prevent="openModal">Abrir modal</a>
-                    </section>
-                </div>
-             </div>
-        </section>
+        <div class="container">
+            <div class="row 200%">
+                <section class="4u 12u(narrower)">
+                    <vc-modal
+                          title="File Upload"
+                          :width="fileModal.width" :height="fileModal.height"
+                          name="file-upload-modal">
+                          <vc-file-upload></vc-file-upload>
+                    </vc-modal>
+                    <a href="#" @click.prevent="openModal">Abrir modal</a>
+                </section>
+            </div>
+         </div>
+    </section>
 </template>

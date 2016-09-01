@@ -1,12 +1,9 @@
 
-//import Dashboard from '../main.vue'
-import Home from '../../home/home.vue'
+import Dashboard from '../main.vue'
 
 export default {
-    '/': {
-        //name: 'dashboard',
-        //component: Dashboard
-        name: 'home',
-        component: Home
+    '/admin': {
+        name: 'dashboard',
+        component: Dashboard
     },
 }
