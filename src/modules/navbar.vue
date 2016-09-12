@@ -21,8 +21,11 @@
             <li v-link="{ path: '/contact', activeClass: 'current' }">
               <a v-link="{ path: '/contact', activeClass: 'current' }">Contato</a>
             </li>
-              <li v-link="{ path: '/admin', activeClass: 'current' }">
-                  <a v-link="{ path: '/admin', activeClass: 'current' }">Admin</a>
+            <li v-link="{ path: '/admin', activeClass: 'current' }">
+              <a v-link="{ path: '/admin', activeClass: 'current' }">Admin</a>
+            </li>
+              <li v-link="{ path: '/upload', activeClass: 'current' }">
+                  <a v-link="{ path: '/upload', activeClass: 'current' }">Upload</a>
               </li>
           </ul>
         </nav>
