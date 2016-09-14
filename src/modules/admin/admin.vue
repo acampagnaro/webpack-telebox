@@ -12,7 +12,7 @@
             this.fileModal.width = (window.innerWidth - 100)
             this.fileModal.height = (window.innerHeight - 100)
             Vue.http.get('http://localhost:5000/emails').then((response) => {
-                console.log(response)
+                this.items = response.data;
             }, (error) =>{
                 console.log(error)
             });
@@ -27,7 +27,8 @@
                 fileModal: {
                     width: 0,
                     height: 0,
-                }
+                },
+                items: '',
             }
         },
     }
@@ -56,26 +57,14 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th><b>E-mail</b></th>
-                                <th><b>Mensagem</b></th>
+                                <th class="col-sm-1"><b>E-mail</b></th>
+                                <th class="col-sm-6"><b>Mensagem</b></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-for="item in items">
                             <tr>
-                                <td>E-mail</td>
-                                <td>Mensagem</td>
-                            </tr>
-                            <tr>
-                                <td>E-mail</td>
-                                <td>Mensagem</td>
-                            </tr>
-                            <tr>
-                                <td>E-mail</td>
-                                <td>Mensagem</td>
-                            </tr>
-                            <tr>
-                                <td>E-mail</td>
-                                <td>Mensagem</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.message}}</td>
                             </tr>
                         </tbody>
                     </table>
