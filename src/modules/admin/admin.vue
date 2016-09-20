@@ -35,21 +35,23 @@
 </script>
 
 <template>
-    <section class="wrapper style1">
-        <div class="container">
-            <div class="row 200%">
-                <section class="12u 12u(narrower)">
-                    <vc-modal
-                          title="File Upload"
-                          :width="fileModal.width" :height="fileModal.height"
-                          name="file-upload-modal">
-                          <vc-file-upload></vc-file-upload>
-                    </vc-modal>
-                    <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
-                </section>
-            </div>
-         </div>
-    </section>
+    <div class="jumbotron">
+        <section class="wrapper style1">
+            <div class="container">
+                <div class="row 200%">
+                    <section class="12u 12u(narrower)">
+                        <vc-modal
+                              title="File Upload"
+                              :width="fileModal.width" :height="fileModal.height"
+                              name="file-upload-modal">
+                              <vc-file-upload></vc-file-upload>
+                        </vc-modal>
+                        <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
+                    </section>
+                </div>
+             </div>
+        </section>
+    </div>
     <section class="wrapper style1">
         <div class="container">
             <div class="row 200%">
