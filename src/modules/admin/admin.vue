@@ -40,6 +40,7 @@
             <div class="container">
                 <div class="row 200%">
                     <section class="12u 12u(narrower)">
+                        <h2>Subir imagens</h2>
                         <vc-modal
                               title="File Upload"
                               :width="fileModal.width" :height="fileModal.height"
@@ -87,5 +88,8 @@
     }
     a:hover {
         text-decoration:underline;
+    }
+    table {
+        width: 98%;
     }
 </style>
