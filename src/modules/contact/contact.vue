@@ -37,7 +37,8 @@
         data(){
             return {
                 message: '',
-                isVisible: false
+                isVisible: false,
+                contact: {}
             }
         }
 }

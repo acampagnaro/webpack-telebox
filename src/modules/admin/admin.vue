@@ -35,28 +35,28 @@
 </script>
 
 <template>
-    <div class="jumbotron">
-        <section class="wrapper style1">
-            <div class="container">
-                <div class="row 200%">
-                    <section class="12u 12u(narrower)">
-                        <h2>Subir imagens</h2>
-                        <vc-modal
-                              title="File Upload"
-                              :width="fileModal.width" :height="fileModal.height"
-                              name="file-upload-modal">
-                              <vc-file-upload></vc-file-upload>
-                        </vc-modal>
-                        <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
-                    </section>
-                </div>
-             </div>
-        </section>
-    </div>
     <section class="wrapper style1">
         <div class="container">
             <div class="row 200%">
                 <section class="12u 12u(narrower)">
+                    <h2>Subir imagens</h2>
+                    <vc-modal
+                          title="File Upload"
+                          :width="fileModal.width" :height="fileModal.height"
+                          name="file-upload-modal">
+                          <vc-file-upload></vc-file-upload>
+                    </vc-modal>
+                    <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
+                </section>
+            </div>
+        </div>
+    </section>
+    <hr/>
+    <section class="wrapper style1">
+        <div class="container">
+            <div class="row 200%">
+                <section class="12u 12u(narrower)">
+                    <h2>Emails Enviados</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -90,6 +90,6 @@
         text-decoration:underline;
     }
     table {
-        width: 98%;
+        width: 97%;
     }
 </style>
