@@ -17,6 +17,8 @@
         data(){
             return {
                 images: '',
+                URL: 'http://localhost:5000/',
+                src: ''
             }
         }
     }
@@ -27,7 +29,7 @@
       <div class="container">
             <ul>
                 <li v-for="item in images">
-                    <img src="http://localhost:5000/{{item}}" alt="">
+                    <img src="{{URL}}{{item}}" alt="">
                 </li>
             </ul>
             <!--
