@@ -29,7 +29,7 @@
       <div class="container">
             <ul>
                 <li v-for="item in images">
-                    <img src="{{URL}}{{item}}" alt="">
+                    <img :src="URL + item" alt="">
                 </li>
             </ul>
             <!--
