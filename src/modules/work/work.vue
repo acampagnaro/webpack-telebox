@@ -1,6 +1,7 @@
 <script>
     import Vue from 'vue'
     import VueResource from 'vue-resource'
+    import Cu from '../pagination.vue'
 
     Vue.use(VueResource)
 
@@ -8,6 +9,7 @@
         ready () {
             Vue.http.get('http://localhost:5000/images').then(
                 (response) => {
+                    console.log(response.data.length);
                     this.images = response.data;
                 }, (error) =>{
                     console.log(error)
@@ -18,8 +20,11 @@
             return {
                 images: '',
                 URL: 'http://localhost:5000/',
-                src: ''
+                src: '',
             }
+        },
+        components: {
+            Cu
         }
     }
 
@@ -32,14 +37,10 @@
                     <img :src="URL + item" alt="">
                 </li>
             </ul>
-            <!--
-            <ul>
-                <li><img src="http://localhost:5000/{{images}}" alt=""></li>
-                <li><img src="../../../images/thumbs/01.jpg" alt=""></li>
-            </ul>
-            -->
       </div>
     </section>
+    <cu :cur.sync="cur" :all.sync="all" v-on:btn-click="listen"></cu>
+
 </template>
 
  <style scoped>
