@@ -5,11 +5,13 @@
 
     Vue.use(VueResource)
 
+    let total = 0;
+
     export default {
         ready () {
             Vue.http.get('http://localhost:5000/images').then(
                 (response) => {
-                    console.log(response.data.length);
+                    total = response.data.length;
                     this.images = response.data;
                 }, (error) =>{
                     console.log(error)
@@ -21,11 +23,19 @@
                 images: '',
                 URL: 'http://localhost:5000/',
                 src: '',
+                cur: 1,
+                all: 3,
+                msg: '',
             }
         },
         components: {
             Cu
+        },
+        methods:{
+        listen:function(data){
+            this.msg = data
         }
+      }
     }
 
 </script>

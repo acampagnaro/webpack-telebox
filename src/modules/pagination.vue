@@ -7,7 +7,7 @@
                 <a @click="btnClick(index)">{{ index }}</a>
                 </li>
             <li v-if="cur!=all"><a @click="cur++">Proxima</a></li>
-            <li><a>Todos<i>{{all}}</i>页</a></li>
+            <li><a>Total<i>{{all}}</i></a></li>
         </ul>
     </div>
 
