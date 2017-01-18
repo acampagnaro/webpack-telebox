@@ -1,8 +1,7 @@
 <script>
     import Vue from 'vue'
     import VueResource from 'vue-resource'
-    import Cu from '../pagination.vue'
-
+    
     Vue.use(VueResource)
 
     let total = 0;
@@ -29,7 +28,7 @@
             }
         },
         components: {
-            Cu
+            
         },
         methods:{
         listen:function(data){
@@ -39,7 +38,9 @@
     }
 
 </script>
+
 <template>
+    {{msg}}
     <section id="works" class="wrapper style2">
       <div class="container">
             <ul>
@@ -49,7 +50,6 @@
             </ul>
       </div>
     </section>
-    <cu :cur.sync="cur" :all.sync="all" v-on:btn-click="listen"></cu>
 
 </template>
 

@@ -3,11 +3,12 @@
     import VueResource from 'vue-resource'
     import VcModal from './modal.vue'
     import VcFileUpload from './file-upload/main.vue'
+    import AcPagination from '../pagination.vue'
 
     Vue.use(VueResource)
 
     export default {
-        components: { VcModal, VcFileUpload },
+        components: { VcModal, VcFileUpload, AcPagination },
         ready () {
             this.fileModal.width = (window.innerWidth - 100)
             this.fileModal.height = (window.innerHeight - 100)
