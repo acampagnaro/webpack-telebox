@@ -14,6 +14,9 @@
             this.fileModal.height = (window.innerHeight - 100)
             Vue.http.get('http://localhost:5000/emails').then((response) => {
                 this.items = response.data;
+                this.pagination = response.pagination;
+
+                console.log(response.headers['X-Total-Count']);
             }, (error) =>{
                 console.log(error)
             });
@@ -22,14 +25,42 @@
             openModal () {
                 this.$broadcast('open-modal', { modal: 'file-upload-modal'})
             },
+            onChangePage(page){
+                this.page = page
+                this.loadBreweries()
+          },
+          loadBreweries(){
+            let t = this
+            this.showLoading()
+            let start = (this.page * this.itensPerPage) - (this.itensPerPage)
+            let end = this.page * this.itensPerPage
+            let qString = "";
+            if (this.search){
+              qString = `&q=${this.search}`
+            }
+            this.$http.get(`/breweries?_start=${start}&_end=${end}${qString}`).then(
+             response=>{
+               t.breweries = response.json()
+               t.total = response.headers['X-Total-Count']
+             },
+             error=>{
+               console.log(error)
+             }).finally(function () {
+              t.hideLoading();
+            })                    
+           },           
         },
         data () {
             return {
+                page: 1,
+                total: 0,
+                itensPerPage: 10,
                 fileModal: {
                     width: 0,
                     height: 0,
                 },
                 items: '',
+                pagination: ''
             }
         },
     }
@@ -75,6 +106,7 @@
                 </section>
             </div>
         </div>
+        <ac-pagination :source="pagination"></ac-pagination>
     </section>
 
 </template>
