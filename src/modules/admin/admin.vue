@@ -12,11 +12,9 @@
         ready () {
             this.fileModal.width = (window.innerWidth - 100)
             this.fileModal.height = (window.innerHeight - 100)
-            Vue.http.get('http://localhost:5000/emails').then((response) => {
-                this.items = response.data;
-                this.pagination = response.pagination;
-
-                console.log(response.headers['X-Total-Count']);
+            Vue.http.get('http://localhost:5000/emails', {page: 1}).then((response) => {
+                this.items = response.data.results[0];
+                this.pagination = response.data.pagination;
             }, (error) =>{
                 console.log(error)
             });
@@ -25,42 +23,25 @@
             openModal () {
                 this.$broadcast('open-modal', { modal: 'file-upload-modal'})
             },
-            onChangePage(page){
-                this.page = page
-                this.loadBreweries()
-          },
-          loadBreweries(){
-            let t = this
-            this.showLoading()
-            let start = (this.page * this.itensPerPage) - (this.itensPerPage)
-            let end = this.page * this.itensPerPage
-            let qString = "";
-            if (this.search){
-              qString = `&q=${this.search}`
-            }
-            this.$http.get(`/breweries?_start=${start}&_end=${end}${qString}`).then(
-             response=>{
-               t.breweries = response.json()
-               t.total = response.headers['X-Total-Count']
-             },
-             error=>{
-               console.log(error)
-             }).finally(function () {
-              t.hideLoading();
-            })                    
-           },           
+            navigate(page){
+                Vue.http.get('http://localhost:5000/emails?page=' + page + '&npp=4', {page: page, npp: 4}).then((response) => {
+                    this.items = response.data.results[0];
+                    this.pagination = response.data.pagination;
+                }, (error) =>{
+                    console.log(error)
+                });
+            },
         },
         data () {
             return {
-                page: 1,
-                total: 0,
-                itensPerPage: 10,
                 fileModal: {
                     width: 0,
                     height: 0,
                 },
                 items: '',
-                pagination: ''
+                pagination: {
+
+                }
             }
         },
     }
@@ -92,12 +73,14 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th class="col-sm-1"><b>ID</b></th>
                                 <th class="col-sm-1"><b>E-mail</b></th>
                                 <th class="col-sm-6"><b>Mensagem</b></th>
                             </tr>
                         </thead>
                         <tbody v-for="item in items">
                             <tr>
+                                <td>{{item.id}}</td>
                                 <td>{{item.email}}</td>
                                 <td>{{item.message}}</td>
                             </tr>
@@ -106,7 +89,9 @@
                 </section>
             </div>
         </div>
-        <ac-pagination :source="pagination"></ac-pagination>
+        <div class="text-center">
+            <ac-pagination :source="pagination" @navigate="navigate"></ac-pagination>
+        </div>
     </section>
 
 </template>

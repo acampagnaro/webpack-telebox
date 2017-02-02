@@ -1,7 +1,10 @@
 <script>
     import Vue from 'vue'
     import VueResource from 'vue-resource'
-    
+    import Gallery from '../photo.vue'
+    import VcModal from './modal.vue'
+
+
     Vue.use(VueResource)
 
     let total = 0;
@@ -28,19 +31,21 @@
             }
         },
         components: {
-            
+            Gallery, VcModal
         },
         methods:{
         listen:function(data){
             this.msg = data
-        }
+        },
+        openModal () {
+            this.$broadcast('open-modal', { modal: 'file-upload-modal'})
+        },
       }
     }
 
 </script>
 
 <template>
-    {{msg}}
     <section id="works" class="wrapper style2">
       <div class="container">
             <ul>
@@ -50,6 +55,13 @@
             </ul>
       </div>
     </section>
+    <vc-modal
+            title="File Upload"
+            :width="800" :height="800"
+            name="file-upload-modal">
+        <gallery></gallery>
+    </vc-modal>
+    <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
 
 </template>
 
