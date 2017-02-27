@@ -1,18 +1,27 @@
 <script>
     import Vue from 'vue'
-
+    import VueResource from 'vue-resource'
 
     export default{
         data() {
             return {
-                images: ['http://i.imgur.com/vYdoAKu.jpg', 'http://i.imgur.com/PUD9HQL.jpg', 'http://i.imgur.com/Lfv18Sb.jpg', 'http://i.imgur.com/tmVJtna.jpg', 'http://i.imgur.com/ZfFAkWZ.jpg'],
                 currentNumber: 0,
-                timer: null
+                timer: null,
+                images: '',
+                URL: 'http://localhost:5000/'
             }
         },
 
         ready() {
             this.startRotation();
+            Vue.http.get('http://localhost:5000/images').then(
+                (response) => {
+                    this.images = response.body;
+                }, (error) =>{
+                    console.log(error)
+                }
+             );
+
         },
 
         methods: {

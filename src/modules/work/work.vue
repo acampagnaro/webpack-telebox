@@ -4,7 +4,6 @@
     import Gallery from '../photo.vue'
     import VcModal from './modal.vue'
 
-
     Vue.use(VueResource)
 
     let total = 0;
@@ -37,7 +36,8 @@
         listen:function(data){
             this.msg = data
         },
-        openModal () {
+        openModal (ev, image) {
+            console.log(this.image);
             this.$broadcast('open-modal', { modal: 'file-upload-modal'})
         },
       }
@@ -50,18 +50,17 @@
       <div class="container">
             <ul>
                 <li v-for="item in images">
-                    <img :src="URL + item" alt="">
+                    <img :src="URL + item" alt="" @click.prevent="openModal">
                 </li>
             </ul>
       </div>
     </section>
     <vc-modal
             title="File Upload"
-            :width="800" :height="800"
+            :width="600" :height="600"
             name="file-upload-modal">
         <gallery></gallery>
     </vc-modal>
-    <a href="#" @click.prevent="openModal"><i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i></a>
 
 </template>
 
@@ -74,16 +73,17 @@
     }
 
     #works  li {
-            display: inline-block;
-            list-style-type: none;
-            padding-right: 20px;
-            vertical-align: middle;
-            width: 360px;
+        display: inline-block;
+        list-style-type: none;
+        padding-right: 20px;
+        vertical-align: middle;
+        width: 360px;
     }
 
     #works li img{
-            width: 360px;
-            height: 247px;
+        width: 360px;
+        height: 247px;
+        cursor: pointer;
     }
 
 </style>

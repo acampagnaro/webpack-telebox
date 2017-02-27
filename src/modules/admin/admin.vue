@@ -12,7 +12,7 @@
         ready () {
             this.fileModal.width = (window.innerWidth - 100)
             this.fileModal.height = (window.innerHeight - 100)
-            Vue.http.get('http://localhost:5000/emails', {page: 1}).then((response) => {
+            Vue.http.get('http://localhost:5000/emails?page=1&npp=2', {page: 1, npp: 2}).then((response) => {
                 this.items = response.data.results[0];
                 this.pagination = response.data.pagination;
             }, (error) =>{
@@ -24,7 +24,7 @@
                 this.$broadcast('open-modal', { modal: 'file-upload-modal'})
             },
             navigate(page){
-                Vue.http.get('http://localhost:5000/emails?page=' + page + '&npp=4', {page: page, npp: 4}).then((response) => {
+                Vue.http.get('http://localhost:5000/emails?page=' + page + '&npp=2', {page: page, npp: 2}).then((response) => {
                     this.items = response.data.results[0];
                     this.pagination = response.data.pagination;
                 }, (error) =>{
