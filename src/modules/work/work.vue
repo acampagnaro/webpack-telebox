@@ -17,28 +17,26 @@
                 }, (error) =>{
                     console.log(error)
                 }
-             );
+            );
         },
         data(){
             return {
                 images: '',
                 URL: 'http://localhost:5000/',
                 src: '',
-                cur: 1,
-                all: 3,
-                msg: '',
             }
         },
         components: {
-            Gallery, VcModal
+            Gallery, 
+            VcModal
         },
         methods:{
         listen:function(data){
             this.msg = data
         },
         openModal (ev, image) {
-            console.log(this.image);
-            this.$broadcast('open-modal', { modal: 'file-upload-modal'})
+            console.log(image);
+            //this.$broadcast('open-modal', { modal: 'file-upload-modal'})
         },
       }
     }
@@ -48,11 +46,11 @@
 <template>
     <section id="works" class="wrapper style2">
       <div class="container">
-            <ul>
-                <li v-for="item in images">
-                    <img :src="URL + item" alt="" @click.prevent="openModal">
-                </li>
-            </ul>
+        <ul>
+            <li v-for="item in images">
+                <img :src="URL + item" alt="item" @click.prevent="openModal">
+            </li>
+        </ul>
       </div>
     </section>
     <vc-modal
@@ -64,7 +62,7 @@
 
 </template>
 
- <style scoped>
+<style scoped>
  
     #works ul {
         padding:0;
