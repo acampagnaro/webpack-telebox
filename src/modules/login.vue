@@ -1,29 +1,28 @@
 <template>
-	   
-     <section id="divCenter"  class="6u 12u(narrower) center" :class="{ 'ac-login-show': isVisible, 'ac-login-hide': !isVisible}">
-        <h3>Login</h3>
-        <form>
-            <div class="row 50%">
-                <div class="6u 12u(mobilep)">
-                    <input type="text" name="username" id="username" placeholder="Usuário" v-model="auth.username"/>
-                </div>
-            </div>
-            <div class="row 50%">
-                <div class="6u 12u(mobilep)">
-                    <input type="password" name="password" id="password" placeholder="Senha" v-model="auth.password"/>
-                </div>
-            </div>
+	 <section id="divCenter"  class="6u 12u(narrower) center" :class="{ 'ac-login-show': isVisible, 'ac-login-hide': !isVisible}">
+      <h3>Login</h3>
+      <form>
+          <div class="row 50%">
+              <div class="6u 12u(mobilep)">
+                  <input type="text" name="username" id="username" placeholder="Usuário" v-model="auth.username"/>
+              </div>
+          </div>
+          <div class="row 50%">
+              <div class="6u 12u(mobilep)">
+                  <input type="password" name="password" id="password" placeholder="Senha" v-model="auth.password"/>
+              </div>
+          </div>
 
-            <div class="row 50%">
-                <div class="12u">
-                    <ul class="actions">
-                        <li><button class="button" v-on:click="authentication">Enviar</button></li>
-                    </ul>
-                </div>
-            </div>
+          <div class="row 50%">
+              <div class="12u">
+                  <ul class="actions">
+                      <li><button class="button" v-on:click="authentication">Enviar</button></li>
+                  </ul>
+              </div>
+          </div>
 
-        </form>
-    </section>	
+      </form>
+    </section>
 </template>
 
 <script type="text/javascript">
@@ -61,25 +60,16 @@
 
 
             }
-        },       
+        },
         data () {
             return {
                 auth:{ },
             }
         },
 
-	}	
+	}
 </script>
 
 <style type="text/css" scoped>
-  #divCenter { 
-    background-color: #e1e1e1; 
-    width: 400px; 
-    height: 250px; 
-    left: 50%; 
-    margin: -130px 0 0 -210px; 
-    padding:10px;
-    position: absolute; 
-    top: 83%;
-  }
+  
 </style>

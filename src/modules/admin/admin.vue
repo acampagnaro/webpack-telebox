@@ -33,9 +33,10 @@
                 });
             },
             authentication(){
+                console.log('aaa');
                 this.$broadcast('open-modal', { modal: 'file-upload-modal'});
             }
-        },       
+        },
         data () {
             return {
                 fileModal: {
@@ -53,9 +54,19 @@
 
 <template>
 
-    <ac-login :class="{ 'ac-admin-show': isVisible, 'ac-admin-hide': !isVisible}"></ac-login>
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <p class="image is-4by3">
+        <img src="http://bulma.io/images/placeholders/1280x960.png">
+      </p>
+    </div>
+    <button class="modal-close"></button>
+  </div>
 
-    <section :class="{ 'ac-admin-show': !isVisible, 'ac-admin-hide': isVisible}">
+    <ac-login></ac-login>
+
+    <section>
         <section class="wrapper style1">
             <div class="container">
                 <div class="row 200%">
@@ -101,7 +112,7 @@
                 <ac-pagination :source="pagination" @navigate="navigate"></ac-pagination>
             </div>
         </section>
-    
+
     </section>
 
 </template>

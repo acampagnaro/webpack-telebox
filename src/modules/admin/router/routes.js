@@ -2,8 +2,8 @@
 import Admin from '../admin.vue'
 
 export default {
-    '/upload': {
-        name: 'upload',
+    '/admin': {
+        name: 'admin',
         component: Admin
     },
 }
