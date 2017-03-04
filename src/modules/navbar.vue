@@ -21,11 +21,9 @@
             <li v-link="{ path: '/contact', activeClass: 'current' }">
               <a v-link="{ path: '/contact', activeClass: 'current' }">Contato</a>
             </li>
-            <!--
             <li v-link="{ path: '/admin', activeClass: 'current' }">
               <a v-link="{ path: '/admin', activeClass: 'current' }">Admin</a>
             </li>
-            -->
           </ul>
         </nav>
     </div>
