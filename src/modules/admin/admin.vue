@@ -54,16 +54,6 @@
 
 <template>
 
-  <div class="modal is-active">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <p class="image is-4by3">
-        <img src="http://bulma.io/images/placeholders/1280x960.png">
-      </p>
-    </div>
-    <button class="modal-close"></button>
-  </div>
-
     <ac-login></ac-login>
 
     <section>
